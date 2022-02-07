@@ -1,0 +1,176 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css");
+
+#logoAvatar{
+  max-width: 5rem;
+  border-radius: 50%;
+}
+/* Menu*/
+.double-nav .breadcrumb-dn {
+  color: #fff;
+}
+.side-nav.wide.slim .sn-ad-avatar-wrapper a span {
+  display: none;
+}
+.acceuil {
+  margin-left: 2.5em;
+}
+#slide-out {
+  /*background-image: url(/images/background/menu2.png);
+  background-size: cover;
+  background-blend-mode: exclusion;*/
+  background: inherit;
+  /*background: linear-gradient(40deg, #2096ff, #05ffa3) !important;*/
+}
+#navbar-cust {
+  background-image: url(/images/background/menu.jpg);
+  background-size: cover;
+  align-items: end;
+}
+#footer {
+  background-image: url(/images/background/menu.jpg);
+  background-size: cover;
+}
+#imgtitle {
+  text-align: center;
+  flex: 2;
+}
+#navbarDrop {
+  transition: none !important;
+}
+#avatar_menu {
+  height: 7rem;
+}
+.collapse-content .fa.fa-heart:hover {
+  color: #f44336 !important;
+}
+.collapse-content .fa.fa-share-alt:hover {
+  color: #0d47a1 !important;
+}
+
+/* scrollbar modele view */
+.scrollbar {
+  margin-left: 30px;
+  float: left;
+  height: 440px;
+  width: 65px;
+  background: #fff;
+  overflow-y: scroll;
+  margin-bottom: 25px;
+}
+.force-overflow {
+  min-height: 450px;
+}
+/* background modele add */
+.add {
+  background-image: url(/images/background/add.jpg);
+  background-size: cover;
+  background-position: center center;
+}
+
+/* Affichage Film */
+.card-text {
+  color: black !important;
+}
+
+/* Cacher les checkbox à l'ouverture ajout film */
+#filmcategories-on {
+  display: none;
+  background-color: thistle;
+}
+#filmdirector-on {
+  display: none;
+  background-color: salmon;
+}
+#filmactors-on {
+  display: none;
+  background-color: mediumaquamarine;
+}
+.avatar-pic {
+  width: 150px;
+}
+.scrollbar-near-moon {
+  scrollbar-color: #b490ca #f5f5f5;
+}
+.scrollbar-near-moon::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #f5f5f5;
+  border-radius: 10px;
+}
+
+.scrollbar-near-moon::-webkit-scrollbar {
+  width: 12px;
+  background-color: #f5f5f5;
+}
+
+.scrollbar-near-moon::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-image: gradient(
+    linear,
+    left bottom,
+    left top,
+    from(#5ee7df),
+    to(#b490ca)
+  );
+  background-image: linear-gradient(bottom, #5ee7df 0%, #b490ca 100%);
+  background-image: linear-gradient(to top, #5ee7df 0%, #b490ca 100%);
+}
+#buttonsearch{
+    border: none!important;
+    box-shadow: none!important;
+    padding: inherit;
+}
+.nbPanier {
+  position: relative;
+  color: white;
+  right: 16px;
+}
+.stars{
+ color: #fecc00;
+ font-size: 1.2rem;
+ margin: 0;
+}
+.tmdb{
+    width: 20%;
+}
+#description_title{
+  display: flex;
+}
+.descritption{
+  font-weight: lighter;
+}
+.descritption strong{
+  font-size: large;
+}
+.descritption h3{
+  font-weight: bold;
+}
+.descritption h5{
+  font-weight: bold;
+}
+.crew {
+  display: flex;
+  flex-wrap: wrap;
+}
+#opacity, .film_container{
+  background-color: rgb(62 69 81 / 90%);
+}
+.addmovie{
+  justify-content: space-between;
+}
+#titleTMDB {
+  display: flex;
+  justify-content: space-between;
+}
+#title_lan{
+  display: flex;
+}
+.container-fluid{
+  padding: 0;
+}
+.card h6,h5{
+  height: 39px;
+}
+#search .form-inline{
+  flex-flow: row;
+}

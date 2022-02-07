@@ -1,0 +1,23 @@
+<div class="container z-depth-1 my-5 px-0">
+    <section class="add p-3 my-md-5 text-center" style="background-image: url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/<?php echo $this->return->backdrop_path; ?>);">   
+        <form method="POST" class="mb-5 mx-md-5" action="<?php echo WEB_ROOT; ?>/movie-add">
+        
+
+            <div class="row m-5 p-5">
+                <div class="col-md-7 mb-4">
+                    <input type="hidden" id="id_TMDb" name="id_TMDb" class="form-control" value="<?php echo $this->return->id; ?>" required>
+                    <input type="text" name="moviename" id="moviename" class="form-control" placeholder="Nom" value="<?php echo $this->return->title; ?>">
+                </div>
+                <div class="col-md-3 mb-4">
+                    <input type="float" name="movieprice" id="movieprice" class="form-control" placeholder="Prix" required>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <input type="int" name="moviequantity" id="moviequantity" class="form-control" placeholder="Quantité" required>
+                </div>
+            </div>
+                <div class="text-center">
+                        <button type="submit" class="btn btn-elegant">Ajouter</button>
+                </div>
+        </form>
+    </section>
+</div>

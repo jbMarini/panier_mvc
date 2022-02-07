@@ -1,0 +1,115 @@
+<!-- Jumbotron -->
+<div class="card card-image card-xl" style="background-image: url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/<?php echo $this->return->backdrop_path; ?>);">
+    <div id="opacity" class="text-white rgba-black-strong py-3 px-4">
+            <!-- Content -->
+            <div class="container mt-4">
+                <!--Section: Content-->
+                <section class="descritption">
+                    <!-- Grid row -->
+                    <div class="row">
+                        <!-- Grid column -->
+                        <div class="col-lg-3 col-md-12 mb-lg-0 mb-4">
+
+                            <!-- Featured image -->
+                            <div class="view overlay rounded z-depth-1 mb-lg-0 mb-4">
+                                <img class="img-fluid" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2<?php echo $this->return->poster_path; ?>" alt="Sample image">
+                                <a>
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-lg-9 col-md-9 mb-md-0 mb-4 mt-xl-4">
+
+                            <div id="titleTMDB" class="row ml-1">
+                                <div id="title_lan">
+                                    <h3 class=" mr-1"><?php echo $this->return->title; ?></h3>
+                                    <?php
+                                    foreach ($this->return->spoken_languages as $value) {
+                                        $langages = strtoupper($value->iso_639_1); ?>
+                                        <sup class="langage mt-2 ml-1 mr-1"><?php echo $langages; ?> </sup>
+                                    <?php
+                                    } ?>
+                                </div>
+                                <div>
+                                    <p class="stars list-inline-item ml-1 mr-1 pr-2"><?php echo UTILS::showStars($this->return->vote_average); ?></p>
+                                </div>
+                                <div></div>
+                            </div>
+
+                            <div class="row ml-1">
+                                <p class="mr-1"><?php echo UTILS::dateToFrench($this->return->release_date, 'j F Y'); ?></p>
+                                <p class="ml-1 mr-1"> • </p>
+                                <?php $nb_genre = count($this->return->genres);
+                                $i = 1;
+                                foreach ($this->return->genres as $genre) {
+                                    if ($i == $nb_genre) {
+                                        echo '<p class="ml-1 mr-1">' . $genre->name . '</p>';
+                                    } else {
+                                        echo '<p class="ml-1 mr-1">' . $genre->name . ', </p>';
+                                    }
+                                    $i++;
+                                }
+                                ?>
+                                <p class="ml-1 mr-1"> • </p>
+                                <p class="ml-1 mr-1">
+                                    <?php $duration = UTILS::convertMinToHours($this->return->runtime);
+                                    echo $duration; ?>
+                                </p>
+                            </div>
+
+                            <div class="row ml-1">
+                                <p><cite><?php echo $this->return->tagline; ?></cite></p>
+                            </div>
+                            <div class="row ml-1">
+                                <h5>Synopsis</h5>
+                            </div>
+                            
+                            <div class="row ml-1">
+                            <p><?php echo $this->return->overview; ?></p>
+                            </div>
+
+                            <div class="row crew ml-1"><?php
+                                    $name_old = '';
+                                    $nb_crew = 1;
+                                    foreach ($this->return->credits->crew as $value) {
+                                        if($nb_crew <= 4){
+                                            $name = $value->name;
+                                            $job = $value->job;
+                                            if($job == 'Director' || $job == 'Novel' || $job == 'Screenplay' || $job == 'Story'){
+                                                if($name != $name_old){
+                                                    if($name_old != ''){
+                                                        echo '<br />';
+                                                        echo '<br /></p>';
+                                                    }
+                                                    echo '<p class="mb-2 mr-5"><strong>'.$value->name . '</strong><br />' . $value->job;
+                                                    $nb_crew++;
+                                                }else{
+                                                    echo ', ' . $value->job;
+                                                }
+                                            } 
+                                            $name_old = $name;
+                                        }
+                                    } ?>
+                            </div>
+
+                            <div class="addmovie row ml-1">
+                                <a class="btn btn-outline-primary mx-0" id="YT" data-toggle="modal" data-target="#modalYT">Voir la bande annonce<i class="fas fa-arrow-right fs-9 ml-2"></i></a>
+                                <a class="btn btn-outline-primary mx-0" href="/add-movie?id_TMDb=<?php echo $this->return->id; ?>">Ajouter <i class="fas fa-arrow-right fs-9 ml-2"></i></a>
+                            </div>
+
+                        </div>
+                        <!-- Grid column -->
+                    </div>
+                    <!-- Grid row -->
+                </section>
+                <!--Section: Content-->
+
+            </div>
+    </div>
+</div>
+<!-- Jumbotron -->
+<?php include('trailer.phtml');?>

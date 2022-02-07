@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body class="mdb-skin">
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-toggleable-md navbar-expand-lg scrolling-navbar" id="navbar-cust">
+            
+            <ul class="nav navbar-nav nav-flex-icons mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="button" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-bars">MENU</i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/movies">Films</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="breadcrumb-dn mr-auto" id="imgtitle">
+                <a href="/accueil">
+                    <img id="logo" src="/images/logos/logo.png" style="height:88px; width:88px; text-align:center">
+                    <img class="animated bounce slower" id="titre" src="/images/titre/titre2.png">
+                </a>
+            </div>
+            <ul class="nav navbar-nav nav-flex-icons ml-auto">
+                <li class="nav-item mt-auto">
+                    <a class="nav-link" data-toggle="modal" data-target="#modalContact"><i class="fas fa-envelope"></i> <span class="clearfix d-none d-sm-inline-block">Nous contactez</span></a>
+                </li>
+                <?php
+                if(isset($_SESSION['user'])){?>
+                    <li class="nav-item mt-auto">
+                    <a href="/shoppingcart" class="nav-link float-left menu-panier" style="color: inherit;"><i class="fas fa-shopping-cart"></i> <span class="clearfix d-none d-sm-inline-block">Panier</span></a>
+                    <?php
+                    if(isset($_SESSION['user']['panier']) && count($_SESSION['user']['panier'])>0){
+                        $total=0;
+                        foreach($_SESSION['user']['panier'] as $panier){
+                            $total+=$panier['quantité'];
+                        }?>
+                        <i class="float-left fas fa-certificate red-text">
+                        <span class="nbPanier"><?php echo $total;?></span></i>
+                    <?php
+                    }?>
+                    </li>
+                <?php
+                }?>
+                <li class="nav-item mt-auto">
+                    <?php
+                    if(!isset($_SESSION['user'])){?>
+                        <a href="" class="nav-link" data-toggle="modal" data-target="#modalLoginRegister" style="color: inherit;"><i class="fas fa-user"></i> 
+                            <span class="clearfix d-none d-sm-inline-block">Connexion/Inscription</span>
+                        </a>
+                    <?php
+                    }else {?>
+                        <img id="logoAvatar" class="ml-3" src="/images/users/<?php echo $_SESSION['user']['profil']->avatar;?>">
+                        <a class="nav-link" id="logout">Déconnexion </a>
+                    <?php
+                    }
+                    ?>
+                </li>
+                <?php
+                if(!isset($_SESSION['user']['profil']->role) || $_SESSION['user']['profil']->role != 0){}
+                else{?>
+                    <li class="nav-item dropdown mt-auto">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                            Admin
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/tmdb">Rechercher un film sur TMDB</a>
+                        </div>
+                    </li>
+                <?php
+                }
+                ?>
+            </ul>
+        </nav>
+        <!-- /.Navbar -->
+    </header>
+
+    <main>
+        <div id="div_background">
+            <div class="container-fluid p-5">
+                <?php
+                if (isset($_SESSION['message']['success']) && count($_SESSION['message']['success']) > 0) {
+                    foreach ($_SESSION['message']['success'] as $mess) {
+                        echo '<div class="alert alert-success" role="alert">';
+                        echo $mess;
+                        echo '</div>';
+                    }
+                    unset($_SESSION['message']['success']);
+                }
+                if (isset($_SESSION['message']['fail']) && count($_SESSION['message']['fail']) > 0) {
+                    foreach ($_SESSION['message']['fail'] as $mess) {
+                        echo '<div class="alert alert-danger" role="alert">';
+                        echo $mess;
+                        echo '</div>';
+                    }
+                    unset($_SESSION['message']['fail']);
+                }
+                echo $this->content(); ?>
+            </div>
+        </div>
+        <div>
+        <?php include('modalcontact.phtml');
+        include('loginRegister.phtml');?>
+        </div>
+    </main>
+</body>
+<?php include('footer.phtml');?>
+</html>
+<script type="text/javascript" src="<?php echo WEB_ROOT; ?>/javascripts/logout.js"></script>

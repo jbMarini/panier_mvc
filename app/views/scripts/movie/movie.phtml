@@ -1,0 +1,90 @@
+<div class="film_container text-white" style="background-image: url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/<?php echo $this->return->backdrop_path; ?>);">
+    <div id="opacity">
+        <div class="row">
+            <div class="col-lg-2 text-center m-5">
+                <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2<?php echo $this->return->poster_path; ?>"></img>
+            </div>
+            <div class="col-lg-5 my-5">
+                <div class="row justify-content-md-center">
+                    <h1><?php echo $this->return->title; ?></h1>
+                </div>
+                <div class="row py-3">
+                    <?php foreach ($this->return->genres as $genre) { ?>
+                        <button type="button" class="btn peach-gradient btn-sm mx-3">
+                            <?php echo $genre->name . ' '; ?>
+                        </button>
+                    <?php
+                    }; ?>
+                </div>
+                <div>
+                    <h5 class="my-3">Sinopsys :</h5><p style="font-weight: lighter;"><?php echo $this->return->overview; ?></p>
+                </div>
+            </div>
+            <div class="col-lg-4 my-5">
+                <ul class="mx-3 my-5" style="list-style:none;">
+                    <li class="my-3">
+                        <strong>Réalisateur : </strong>
+                        <?php
+                        foreach ($this->return->credits->crew as $value) {
+                            if($value->job == 'Director'){?>
+                                <a href="/director=<?php echo $value->name ?>" class="view" id="view_director" title="Voir la fiche du réalisateur" data-tooltip="true">
+                                    <button type="button" class="btn aqua-gradient btn-sm"><?php echo $value->name; ?></button>
+                                </a>
+                            <?php
+                            } 
+                        } ?>
+                            
+                    </li>
+                    <li class="my-3">
+                        <strong>Acteurs : </strong>
+                        <p class="row mx-1">
+                            <?php
+                            $nb = 0;
+                            foreach ($this->return->credits->cast as $value) {
+                                if($nb < 6){?>
+                                    <a href="/actor=<?php echo $value->name ?>" class="view" id="view_director" title="Voir la fiche du acteur" data-tooltip="true">
+                                        <button type="button" class="btn purple-gradient btn-sm"><?php echo $value->name; ?></button>
+                                    </a>
+                                <?php
+                                }
+                                $nb++;
+                            } ?>
+                        </p>
+                    </li>
+                    <li class="my-3">
+                        <strong>Date de sortie : </strong>
+                        <?php echo UTILS::dateToFrench($this->return->release_date, 'j F Y'); ?>
+                    </li>
+                    <li class="my-3">
+                        <strong>Prix : <?php echo number_format(($this->movie->price),2); ?>€</strong>
+                    </li>
+                    <li class="my-3 text-center">
+                        <?php
+                        if (isset($_SESSION['user'])) { ?>
+                            <a class="cart btn blue-gradient btn-rounded" role="button">
+                                <input type="hidden" id="idcart" name="id" value="<?php echo $this->movie->id; ?>" required>
+                                Ajouter au panier<i class="fas fa-cart-plus ml-2" aria-hidden="true"></i>
+                            </a>
+                        <?php
+                        } ?>
+                    </li>
+                    <?php
+                    if(!isset($_SESSION['user']['profil']->role) || $_SESSION['user']['profil']->role != 0){}
+                    else{?>
+                        <li class="my-3" style="display: flex; justify-content: space-around;">
+                            <a href="/film?action=Modifier&update_id=<?php echo $this->return->id; ?>" class="edit btn btn-outline-info btn-rounded waves-effect" id="edit_film" title="Editer l'affiche du film" data-tooltip="true">
+                                Modifier
+                            </a>
+                            <a class="delete btn btn-outline-danger btn-rounded waves-effect" title="Supprimer le film" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce film ?')" href="?iddelete=<?php echo $this->return->id; ?>" class="float-right">
+                                Supprimer
+                            </a>
+                        </li>
+                    <?php
+                    }
+                    ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="<?php echo WEB_ROOT; ?>/javascripts/cart.js"></script>

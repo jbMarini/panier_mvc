@@ -1,0 +1,40 @@
+<?php
+        foreach ($this->movies as $value) { ?>
+            <div class="col mb-4">
+                <div class="card">
+                    <div class="view overlay">
+                        <?php
+                        if ($value->poster_path != '') { ?>
+                            <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2<?php echo $value->poster_path; ?>" class="card-img-top" data-toggle="tooltip" data-placement="right">
+                        <?php
+                        } else { ?>
+                            <img src="/images/covers/default.jpg" class="card-img-top" data-toggle="tooltip" data-placement="right">
+                        <?php
+                        } ?>
+                        <a>
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+                    <div class="card-body elegant-color white-text rounded-bottom">
+                        <!-- Title -->
+                        <h6 class="card-title"><?php echo $value->title; ?></h6>
+                        <hr class="hr-light">
+                        <!-- Text -->
+                        <p class="card-text white-text mb-4">
+                            <?php if (isset($value->release_date)) {
+                                echo UTILS::dateToFrench($value->release_date, 'j F Y');
+                            } ?><br />
+                        </p>
+                        <!-- Link -->
+                        <a href="/movie?id=<?php echo $value->id; ?>" class="white-text d-flex justify-content-end" id="tmdb_id" name="tmdb_id" data-tooltip="true">
+                            <h7>Voir détails du film <i class="fas fa-angle-double-right"></i></h7>
+                        </a>
+                    </div>
+                    <div class="rounded-bottom mdb-color text-center">
+                        <p class="stars list-inline-item pr-2"><img class="tmdb" src="/images/logos/tmdb.svg"> <?php echo UTILS::showStars($value->vote_average); ?></p>
+                    </div>
+
+                </div>
+            </div>
+        <?php
+        } ?>

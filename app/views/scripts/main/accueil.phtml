@@ -1,0 +1,109 @@
+<!--Carousel Wrapper-->
+<div id="multi-item-example" class="carousel slide carousel-multi-item mx-5 px-5" data-ride="carousel">
+
+    <!--Controls-->
+    <div class="controls-top">
+        <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fas fa-chevron-left"></i></a>
+        <a class="btn-floating" href="#multi-item-example" data-slide="next"><i class="fas fa-chevron-right"></i></a>
+    </div>
+    <!--/.Controls-->
+
+    <!--Indicators-->
+    <ol class="carousel-indicators">
+        <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+        <li data-target="#multi-item-example" data-slide-to="1"></li>
+        <li data-target="#multi-item-example" data-slide-to="2"></li>
+    </ol>
+    <!--/.Indicators-->
+
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+
+        <!--First slide-->
+            <?php
+            $count = 0;
+            foreach ($this->movies as $value) {
+                if($count == 0){?>
+                    <div class="carousel-item active">
+                    <?php
+                }
+                if($count >= 0 && $count < 6) {?>
+                    <div class="col-md-2">
+                        <div class="card">
+                            <div class="view overlay">
+                                <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2<?php echo $value->poster_path; ?>" class="card-img-top" data-toggle="tooltip" data-placement="right">
+                                <a href="/movie?id=<?php echo $value->id; ?>" id="tmdb_id" name="tmdb_id" data-tooltip="true">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <div class="card-body elegant-color white-text rounded-bottom">
+                                <!-- Title -->
+                                <h5 class="card-title"><?php echo $value->title; ?></h5>
+                            </div>
+                        </div>
+                    </div>
+                <?php
+                }
+                if($count == 5){?>
+                    </div>
+                    <?php
+                }
+
+                if($count == 6){?>
+                    <div class="carousel-item">
+                    <?php
+                }
+                if($count >= 6 && $count < 12) {?>
+                    <div class="col-md-2">
+                        <div class="card">
+                            <div class="view overlay">
+                                <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2<?php echo $value->poster_path; ?>" class="card-img-top" data-toggle="tooltip" data-placement="right">
+                                <a href="/movie?id=<?php echo $value->id; ?>" id="tmdb_id" name="tmdb_id" data-tooltip="true">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <div class="card-body elegant-color white-text rounded-bottom">
+                                <a class="activator waves-effect mr-4"></a>
+                                <!-- Title -->
+                                <h5 class="card-title"><?php echo $value->title; ?></h5>
+                            </div>
+                        </div>
+                    </div>
+                <?php
+                }
+                if($count == 11){?>
+                    </div>
+                    <?php
+                }
+
+                if($count == 12){?>
+                    <div class="carousel-item">
+                    <?php
+                }
+                if($count >= 12 && $count < 18) {?>
+                    <div class="col-md-2">
+                        <div class="card">
+                            <div class="view overlay">
+                                <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2<?php echo $value->poster_path; ?>" class="card-img-top" data-toggle="tooltip" data-placement="right">
+                                <a href="/movie?id=<?php echo $value->id; ?>" id="tmdb_id" name="tmdb_id" data-tooltip="true">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <div class="card-body elegant-color white-text rounded-bottom">
+                                <a class="activator waves-effect mr-4"></a>
+                                <!-- Title -->
+                                <h5 class="card-title"><?php echo $value->title; ?></h5>
+                            </div>
+                        </div>
+                    </div>
+                <?php
+                }
+                if($count == 17){?>
+                    </div>
+                    <?php
+                }
+                $count++;
+            } ?>
+        </div>
+    </div>
+</div>
