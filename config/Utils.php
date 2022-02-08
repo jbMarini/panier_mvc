@@ -1,14 +1,6 @@
 <?php
 class Utils
 {
-  public static function generateSlug($value)
-  {
-    $string = preg_replace("/['’]/", ' ', $value);
-    $string = transliterator_transliterate("Any-Latin; NFD; [:Nonspacing Mark:] Remove; NFC; [:Punctuation:] Remove; Lower();", $string);
-    $string = preg_replace('/[-\s]+/', '-', $string);
-    return trim($string, '-');
-  }
-
   public static function message($return, $returnSuccess, $returnFail)
   {
     if ($return > 0) {

@@ -82,18 +82,20 @@ class AjaxController extends Controller
         foreach ($genres as $value)
         $this->view->categories = $value;
 
+        // Tableau de tous les films de la BDD
+        $movies = new Movie();
+        $order = 'name asc';
+        $movies = $movies->fetchAll($order);
+        $search = [];
+        foreach ($movies as $movie){
+            $id = $movie->id_TMDb;
+            $url =  'http://api.themoviedb.org/3/movie/'.$id.'?api_key=bf57f49ead0ced1ae34a5f0785d56290&language=fr-FR&append_to_response=query,videos,credits';
+            $search[] = UTILS::searchTMDB($url);
+        }
+
         if($this->_getParam('genre') != ''){
             $genre = $this->_getParam('genre');
             {
-                $movies = new Movie();
-                $order = 'name asc';
-                $movies = $movies->fetchAll($order);
-                $search = [];
-                foreach ($movies as $movie){
-                    $id = $movie->id_TMDb;
-                    $url =  'http://api.themoviedb.org/3/movie/'.$id.'?api_key=bf57f49ead0ced1ae34a5f0785d56290&language=fr-FR&append_to_response=query,videos,credits';
-                    $search[] = UTILS::searchTMDB($url);
-                }
                 $return = [];
                 foreach($search as $value){
                     $this->view->test = $value;
@@ -112,15 +114,6 @@ class AjaxController extends Controller
 
             $director = $this->_getParam('director');
             {
-                $movies = new Movie();
-                $order = 'name asc';
-                $movies = $movies->fetchAll($order);
-                $search = [];
-                foreach ($movies as $movie){
-                    $id = $movie->id_TMDb;
-                    $url =  'http://api.themoviedb.org/3/movie/'.$id.'?api_key=bf57f49ead0ced1ae34a5f0785d56290&language=fr-FR&append_to_response=query,videos,credits';
-                    $search[] = UTILS::searchTMDB($url);
-                }
                 $return = [];
                 foreach($search as $value){
                     $this->view->test = $value;
@@ -141,15 +134,6 @@ class AjaxController extends Controller
 
             $actor = $this->_getParam('actor');
             {
-                $movies = new Movie();
-                $order = 'name asc';
-                $movies = $movies->fetchAll($order);
-                $search = [];
-                foreach ($movies as $movie){
-                    $id = $movie->id_TMDb;
-                    $url =  'http://api.themoviedb.org/3/movie/'.$id.'?api_key=bf57f49ead0ced1ae34a5f0785d56290&language=fr-FR&append_to_response=query,videos,credits';
-                    $search[] = UTILS::searchTMDB($url);
-                }
                 $return = [];
                 foreach($search as $value){
                     $this->view->test = $value;
