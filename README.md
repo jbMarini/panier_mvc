@@ -21,4 +21,4 @@ Version 0.9b
 Preview
 =====
 
-[Home](screenshots/1.Accueil.png?raw=true)
+[Home](screenshots/1.Accueil_min.png?raw=true)
