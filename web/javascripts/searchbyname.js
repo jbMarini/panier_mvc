@@ -6,7 +6,7 @@ $('.ajaxName').click(function(){
         url:"/search?name="+name
     })
     .done(function( msg ) {
-       $('#container_movies').html('');
-       $('#container_movies').html(msg);
+       $('#container').html('');
+       $('#container').html(msg);
     });
 });
