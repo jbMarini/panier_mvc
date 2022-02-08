@@ -195,3 +195,7 @@ body{
 #container_tvdb .card-body{
   padding: 0.75rem;
 }
+#info{
+  display: flex;
+  justify-content: space-between;
+}
