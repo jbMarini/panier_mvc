@@ -33,13 +33,13 @@ class Movie extends Model
         return $statement->fetchAll($fetchType);
 	}
 
-	public function searchByTitle($search)
+	public function searchByTitle($title)
     {
         $sql = 'select * from ' . $this->_table;
         $sql .= ' where name like ? ';
 		
 		$statement = $this->_dbh->prepare($sql);
-		$statement->execute(array('%'.$search. '%'));
+		$statement->execute(array('%'.$title. '%'));
 		
 		return $statement->fetchAll(PDO::FETCH_OBJ);
     }

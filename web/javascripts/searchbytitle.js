@@ -1,9 +1,9 @@
-$('.ajaxName').click(function(){
-    var name = $('#searchByTitle').val();
-    console.log(name);
+$('.ajaxTitle').click(function(){
+    var title = $('#searchByTitle').val();
+    console.log(title);
     $.ajax({
         method:"GET",
-        url:"/search?name="+name
+        url:"/search?title="+title
     })
     .done(function( msg ) {
        $('#container').html('');

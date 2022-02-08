@@ -16,7 +16,7 @@
                 </div>
                 <div class="row py-3">
                     <?php foreach ($this->return->genres as $genre) { ?>
-                        <a data-id="<?php echo $genre->name; ?>" class="ajaxCategorie">
+                        <a data-genre="<?php echo $genre->name; ?>" class="ajaxGenre">
                             <button type="button" class="btn peach-gradient btn-sm mx-3">
                                 <?php echo $genre->name . ' '; ?>
                             </button>
@@ -40,7 +40,7 @@
                         <?php
                         foreach ($this->return->credits->crew as $value) {
                             if($value->job == 'Director'){?>
-                                <a href="/director=<?php echo $value->name ?>" class="view" id="view_director" title="Voir la fiche du réalisateur" data-tooltip="true">
+                                <a data-director="<?php echo $value->name; ?>" class="ajaxDirector" id="view_director" data-tooltip="true">
                                     <button type="button" class="btn blue-gradient btn-sm"><?php echo $value->name; ?></button>
                                 </a>
                             <?php
@@ -54,7 +54,7 @@
                             $nb = 0;
                             foreach ($this->return->credits->cast as $value) {
                                 if($nb < 6){?>
-                                    <a href="/actor=<?php echo $value->name ?>" class="view" id="view_director" title="Voir la fiche du acteur" data-tooltip="true">
+                                    <a data-actor="<?php echo $value->name; ?>" class="ajaxActor" id="view_actor" data-tooltip="true">
                                         <button type="button" class="btn purple-gradient btn-sm"><?php echo $value->name; ?></button>
                                     </a>
                                 <?php
@@ -108,4 +108,6 @@
 <!-- Jumbotron -->
 <?php include('trailer.phtml');?>
 <script type="text/javascript" src="<?php echo WEB_ROOT; ?>/javascripts/cart.js"></script>
-<script type="text/javascript" src="<?php echo WEB_ROOT; ?>/javascripts/searchbycateg.js"></script>
+<script type="text/javascript" src="<?php echo WEB_ROOT; ?>/javascripts/searchbygenre.js"></script>
+<script type="text/javascript" src="<?php echo WEB_ROOT; ?>/javascripts/searchbyactor.js"></script>
+<script type="text/javascript" src="<?php echo WEB_ROOT; ?>/javascripts/searchbydirector.js"></script>

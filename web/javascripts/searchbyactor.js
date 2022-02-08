@@ -1,9 +1,9 @@
-$('.ajaxCategorie').click(function(){
-    var genre = $(this).data('id');
-    console.log(genre);
+$('.ajaxActor').click(function(){
+    var actor = $(this).data('actor');
+    console.log(actor);
     $.ajax({
         method:"GET",
-        url:"/search?genre="+genre
+        url:"/search?actor="+actor
     })
     .done(function( msg ) {
        $('#container').html('');

@@ -108,12 +108,68 @@ class AjaxController extends Controller
                 $this->view->movies = $return;
                 $this->view->disableLayout();
             }
-        }elseif($this->_getParam('name') != ''){
+        }elseif($this->_getParam('director') != ''){
 
-            $name = $this->_getParam('name');
+            $director = $this->_getParam('director');
+            {
+                $movies = new Movie();
+                $order = 'name asc';
+                $movies = $movies->fetchAll($order);
+                $search = [];
+                foreach ($movies as $movie){
+                    $id = $movie->id_TMDb;
+                    $url =  'http://api.themoviedb.org/3/movie/'.$id.'?api_key=bf57f49ead0ced1ae34a5f0785d56290&language=fr-FR&append_to_response=query,videos,credits';
+                    $search[] = UTILS::searchTMDB($url);
+                }
+                $return = [];
+                foreach($search as $value){
+                    $this->view->test = $value;
+                    foreach ($value->credits->crew as $result) {
+                        if($result->job == 'Director'){
+                            if ($result->name == $director){
+                                $id = $value->id;
+                                $url =  'http://api.themoviedb.org/3/movie/'.$id.'?api_key=bf57f49ead0ced1ae34a5f0785d56290&language=fr-FR&append_to_response=query,videos,credits';
+                                $return[] = UTILS::searchTMDB($url);
+                            }
+                        }
+                    } 
+                }
+                $this->view->movies = $return;
+                $this->view->disableLayout();
+            }
+        }elseif($this->_getParam('actor') != ''){
+
+            $actor = $this->_getParam('actor');
+            {
+                $movies = new Movie();
+                $order = 'name asc';
+                $movies = $movies->fetchAll($order);
+                $search = [];
+                foreach ($movies as $movie){
+                    $id = $movie->id_TMDb;
+                    $url =  'http://api.themoviedb.org/3/movie/'.$id.'?api_key=bf57f49ead0ced1ae34a5f0785d56290&language=fr-FR&append_to_response=query,videos,credits';
+                    $search[] = UTILS::searchTMDB($url);
+                }
+                $return = [];
+                foreach($search as $value){
+                    $this->view->test = $value;
+                    foreach ($value->credits->cast as $result) {
+                        if ($result->name == $actor){
+                            $id = $value->id;
+                            $url =  'http://api.themoviedb.org/3/movie/'.$id.'?api_key=bf57f49ead0ced1ae34a5f0785d56290&language=fr-FR&append_to_response=query,videos,credits';
+                            $return[] = UTILS::searchTMDB($url);
+                        }
+                    } 
+                }
+                $this->view->movies = $return;
+                $this->view->disableLayout();
+            }
+        }elseif($this->_getParam('title') != ''){
+
+            $title = $this->_getParam('title');
             {
                 $modelMovie = new Movie();
-                $movies = $modelMovie->searchByTitle($name);
+                $movies = $modelMovie->searchByTitle($title);
                 $return = [];
                 foreach ($movies as $movie){
                     $id = $movie->id_TMDb;
