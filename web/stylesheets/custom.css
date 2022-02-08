@@ -1,5 +1,12 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css");
-
+html, body{
+  height: 100%;
+}
+body{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 #logoAvatar{
   max-width: 5rem;
   border-radius: 50%;
@@ -169,8 +176,22 @@
   padding: 0;
 }
 .card h6,h5{
-  height: 39px;
+  height: 2rem;
 }
 #search .form-inline{
   flex-flow: row;
+}
+#container_tvdb .col{
+  flex: 0 0 10%;
+  max-width: 10%;
+  font-size: x-small;
+}
+#container_tvdb .card h6 {
+  font-size: 0.8rem;
+}
+#container_tvdb .card-text{
+  font-size: 0.8rem;
+}
+#container_tvdb .card-body{
+  padding: 0.75rem;
 }
