@@ -16,9 +16,11 @@
                 </div>
                 <div class="row py-3">
                     <?php foreach ($this->return->genres as $genre) { ?>
-                        <button type="button" class="btn peach-gradient btn-sm mx-3">
-                            <?php echo $genre->name . ' '; ?>
-                        </button>
+                        <a data-id="<?php echo $genre->name; ?>" class="ajaxCategorie">
+                            <button type="button" class="btn peach-gradient btn-sm mx-3">
+                                <?php echo $genre->name . ' '; ?>
+                            </button>
+                        </a>
                     <?php
                     }; ?>
                 </div>
@@ -106,3 +108,4 @@
 <!-- Jumbotron -->
 <?php include('trailer.phtml');?>
 <script type="text/javascript" src="<?php echo WEB_ROOT; ?>/javascripts/cart.js"></script>
+<script type="text/javascript" src="<?php echo WEB_ROOT; ?>/javascripts/searchbycateg.js"></script>

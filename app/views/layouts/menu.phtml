@@ -83,7 +83,7 @@
 
     <main>
         <div id="div_background">
-            <div class="container-fluid p-5">
+            <div id="container" class="container-fluid p-5">
                 <?php
                 if (isset($_SESSION['message']['success']) && count($_SESSION['message']['success']) > 0) {
                     foreach ($_SESSION['message']['success'] as $mess) {

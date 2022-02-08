@@ -6,7 +6,7 @@ $('.ajaxCategorie').click(function(){
         url:"/search?genre="+genre
     })
     .done(function( msg ) {
-       $('#container_movies').html('');
-       $('#container_movies').html(msg);
+       $('#container').html('');
+       $('#container').html(msg);
     });
 });

@@ -75,6 +75,13 @@ class AjaxController extends Controller
     }
 
     public function searchByAction(){
+        
+        // Affichage des catégories 
+        $url = 'http://api.themoviedb.org/3/genre/movie/list?api_key=bf57f49ead0ced1ae34a5f0785d56290&language=fr-FR';
+        $genres = UTILS::searchTMDB($url);
+        foreach ($genres as $value)
+        $this->view->categories = $value;
+
         if($this->_getParam('genre') != ''){
             $genre = $this->_getParam('genre');
             {
